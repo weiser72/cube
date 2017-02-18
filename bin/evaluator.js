@@ -1,9 +1,9 @@
-var options = require("./evaluator-config"),
-    cube = require("../"),
-    server = cube.server(options);
+'use strict';
 
-server.register = function(db, endpoints) {
-  cube.evaluator.register(db, endpoints);
-};
+var cube = require("../"),
+    server = cube.server('evaluator');
 
-server.start();
+server
+  .use(cube.evaluator.register)
+  .use(cube.visualizer.register)
+  .start();
